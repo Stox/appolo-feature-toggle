@@ -36,8 +36,11 @@ module.exports = function (options) {
             callback();
         }
 
-        function onFeaturesLoadFail(){
+        function onFeaturesLoadFail(err){
 
+            logger.error("feature toggles loaded",{err:err.stack||err.toString()});
+
+            callback();
         }
 
 
