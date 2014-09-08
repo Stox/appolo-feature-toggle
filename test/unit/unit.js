@@ -11,6 +11,14 @@ describe("unit", function () {
         var features = [{
                 name: 'test',
                 isActive: true
+            },
+            {
+                name: 'test2',
+                isActive: true
+            },
+            {
+                name: 'test3',
+                isActive: false
             }
         ]
 
@@ -21,7 +29,7 @@ describe("unit", function () {
 
     it('should initialize', function (done) {
 
-        featureToggleManager._features.should.have.keys(['test'])
+        featureToggleManager._features.should.have.keys(['test','test2','test3'])
 
         done();
     });
@@ -72,6 +80,18 @@ describe("unit", function () {
 
 
         featureToggleManager.isExist('test').should.be.true
+        done();
+    });
+
+    it('should get  active features', function (done) {
+
+
+        featureToggleManager.getActiveFeatures().should.be.instanceof(Array);
+
+        featureToggleManager.getActiveFeatures().length.should.be.eq(2);
+
+        featureToggleManager.getActiveFeatures()[0].name.should.be.eq("test")
+
         done();
     });
 
