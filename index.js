@@ -6,7 +6,7 @@ module.exports = function (options) {
 
     return function (env, logger, inject, callback) {
 
-        var featureToggleManager = new FeatureToggleManager(options);
+        var featureToggleManager = new FeatureToggleManager({environmentName:options.environmentName ||env.type});
 
         if (options.url) {
 
