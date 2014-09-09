@@ -10,19 +10,22 @@ describe("unit", function () {
 
         var features = [{
                 name: 'test',
-                isActive: true
+                isActive: true,
+                environments:['development']
             },
             {
                 name: 'test2',
-                isActive: true
+                isActive: true,
+                environments:['development']
             },
             {
                 name: 'test3',
-                isActive: false
+                isActive: true,
+                environments:['staging']
             }
         ]
 
-        featureToggleManager = new FetureToggleManager(features)
+        featureToggleManager = new FetureToggleManager({environmentName:'development'})
 
         featureToggleManager.setFeatures(features);
     });
@@ -54,7 +57,8 @@ describe("unit", function () {
 
         featureToggleManager.setFeature({
             name: 'test2',
-            isActive: true
+            isActive: true,
+            environments:['development']
         })
 
         featureToggleManager.isActive('test2').should.be.true
@@ -83,7 +87,14 @@ describe("unit", function () {
         done();
     });
 
-    it('should get  active features', function (done) {
+    it('should get  active features by environments', function (done) {
+
+        featureToggleManager.isActive('test3').should.be.false;
+
+        done();
+    });
+
+    it('should get  active feature by ', function (done) {
 
 
         featureToggleManager.getActiveFeatures().should.be.instanceof(Array);
