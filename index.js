@@ -40,7 +40,7 @@ module.exports = function (options) {
 
             logger.error("feature toggles loaded",{err:err.stack||err.toString()});
 
-            callback();
+            callback(err);
         }
 
 
